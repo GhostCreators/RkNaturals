@@ -1,5 +1,7 @@
 package com.prometheus.rknaturals.payments;
 
+import java.util.TreeMap;
+
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -29,7 +31,7 @@ public class PaytmPaymentService {
 		String mid = Encryptor.decrypt(environment.getProperty("mid"));
 		String mkey = Encryptor.decrypt(environment.getProperty("mkey"));
 
-		String callBackUrl = "https://merchant.com/callback";
+		String callBackUrl = "http://localhost:8080/callback";
 
 		String url = "https://securegw-stage.paytm.in/theia/api/v1/initiateTransaction?mid=" + mid + "&orderId="
 				+ orderID;
@@ -74,25 +76,30 @@ public class PaytmPaymentService {
 
 		if (response.getBody().getResultInfo().getResultStatus().trim().equals("S")) {
 			System.out.println("successfull");
-			
+
 		} else {
 			System.out.println(response.getBody().getResultInfo().getResultCode());
 			System.out.println("failure" + response.getBody().getResultInfo().getResultMsg());
 		}
-		
+
 		return response.getBody().getTxnToken();
 	}
 
 	public String getPaymentUrl(String orderID) {
 		String mid = Encryptor.decrypt(environment.getProperty("mid"));
-		String url = "https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage?mid=" + mid + "&orderId="
-				+ orderID;
-		
+		String url = "https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage?mid=" + mid + "&orderId=" + orderID;
+
 		return url;
 	}
-	
+
 	public String getMid() {
 		return Encryptor.decrypt(environment.getProperty("mid"));
+	}
+
+	public boolean validateCheckSum(TreeMap<String, String> parameters, String paytmChecksum) throws Exception {
+		
+		return PaytmChecksum.verifySignature(parameters, Encryptor.decrypt(environment.getProperty("mkey")),
+				paytmChecksum);
 	}
 
 }
