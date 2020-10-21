@@ -17,22 +17,23 @@ import com.prometheus.rknaturals.util.Encryptor;
 public class PaytmPaymentService {
 
 	private final ObjectMapper objectMapper = new ObjectMapper();
-	
+
 	@Autowired
 	RestTemplate restTemplate;
 
 	@Autowired
 	private Environment environment;
-	
-	public void initiateTransaction(String customerID,String orderID,String amount) throws Exception {
-		
+
+	public String initiateTransaction(String customerID, String orderID, String amount) throws Exception {
+
 		String mid = Encryptor.decrypt(environment.getProperty("mid"));
 		String mkey = Encryptor.decrypt(environment.getProperty("mkey"));
-		
-		String callBackUrl = "";
-		
-		String url = "https://securegw-stage.paytm.in/theia/api/v1/initiateTransaction?mid="+mid+"&orderId="+orderID;
-		
+
+		String callBackUrl = "https://merchant.com/callback";
+
+		String url = "https://securegw-stage.paytm.in/theia/api/v1/initiateTransaction?mid=" + mid + "&orderId="
+				+ orderID;
+
 		JSONObject paytmParams = new JSONObject();
 
 		JSONObject body = new JSONObject();
@@ -65,20 +66,33 @@ public class PaytmPaymentService {
 
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
-		HttpEntity<String> request = 
-			      new HttpEntity<String>(post_data.toString(), headers);
-			    
-		String output = 
-			      restTemplate.postForObject(url, request, String.class);
-		
-		InitialisePaymentResponse  response= objectMapper.readValue(output, InitialisePaymentResponse.class);
-		
-		if(response.getBody().getResultInfo().getResultStatus().trim().equals("S")) {
+		HttpEntity<String> request = new HttpEntity<String>(post_data.toString(), headers);
+
+		String output = restTemplate.postForObject(url, request, String.class);
+
+		InitialisePaymentResponse response = objectMapper.readValue(output, InitialisePaymentResponse.class);
+
+		if (response.getBody().getResultInfo().getResultStatus().trim().equals("S")) {
 			System.out.println("successfull");
-		}
-		else {
+			
+		} else {
 			System.out.println(response.getBody().getResultInfo().getResultCode());
 			System.out.println("failure" + response.getBody().getResultInfo().getResultMsg());
 		}
+		
+		return response.getBody().getTxnToken();
 	}
+
+	public String getPaymentUrl(String orderID) {
+		String mid = Encryptor.decrypt(environment.getProperty("mid"));
+		String url = "https://securegw-stage.paytm.in/theia/api/v1/showPaymentPage?mid=" + mid + "&orderId="
+				+ orderID;
+		
+		return url;
+	}
+	
+	public String getMid() {
+		return Encryptor.decrypt(environment.getProperty("mid"));
+	}
+
 }
