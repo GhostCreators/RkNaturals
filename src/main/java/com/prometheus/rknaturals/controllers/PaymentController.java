@@ -16,7 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.prometheus.rknaturals.payments.PaytmPaymentService;
 import com.prometheus.rknaturals.util.Encryptor;
 
-@RestController("/api")
+//@RestController
+//@RequestMapping("/api")
 public class PaymentController {
 
 	@Autowired

@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.paytm.pg.merchant.PaytmChecksum;
 import com.prometheus.rknaturals.util.Encryptor;
 
-@Service
+//@Service
 public class PaytmPaymentService {
 
 	private final ObjectMapper objectMapper = new ObjectMapper();
