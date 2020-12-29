@@ -40,8 +40,6 @@ public class UserServiceImpl implements UserService {
 		UserEntity ue = UserServiceImpl.transform(userDTO);
 		ue.setPassword(encoder.encode(ue.getPassword()));
 		
-		System.out.println(ue.getPassword());
-		
 		userRepository.save(ue);
 
 		return true;
