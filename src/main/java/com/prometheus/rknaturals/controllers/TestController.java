@@ -1,8 +1,5 @@
 package com.prometheus.rknaturals.controllers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,12 +21,7 @@ public class TestController {
 	}
 	
 	@GetMapping("/users")
-	public List<UserEntity> getUser() throws Exception {
-		UserEntity ue = new UserEntity(null,"prudhvi","password","email");
-		List<Integer> list = new ArrayList<Integer>();
-		list.add(1);
-		list.add(2);
-		return userRepository.findAllById(list);
-		
+	public UserEntity getUser() throws Exception {
+		return userRepository.findById("pbeerelly").get();
 	}
 }	

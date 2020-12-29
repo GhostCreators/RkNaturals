@@ -29,16 +29,6 @@ public class RkNaturalsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RkNaturalsApplication.class, args);
 	}
-
-//	@Bean
-//    public DataSource getDataSource() {
-//        DataSourceBuilder<?> dataSourceBuilder = DataSourceBuilder.create();
-//        dataSourceBuilder.driverClassName("org.h2.Driver");
-//        dataSourceBuilder.url("jdbc:h2:mem:test");
-//        dataSourceBuilder.username("postgres");
-//        dataSourceBuilder.password("root");
-//        return dataSourceBuilder.build();
-//    }
 	
 	@Bean
 	public RestTemplate restTemplate(RestTemplateBuilder builder) {
