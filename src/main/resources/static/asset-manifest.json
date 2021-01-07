@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/static/css/main.bb184f77.chunk.css",
+    "main.js": "/static/js/main.b0c64934.chunk.js",
+    "main.js.map": "/static/js/main.b0c64934.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.54b58057.js",
+    "runtime-main.js.map": "/static/js/runtime-main.54b58057.js.map",
+    "static/css/2.7425a665.chunk.css": "/static/css/2.7425a665.chunk.css",
+    "static/js/2.9fba63be.chunk.js": "/static/js/2.9fba63be.chunk.js",
+    "static/js/2.9fba63be.chunk.js.map": "/static/js/2.9fba63be.chunk.js.map",
+    "static/js/3.dad4e24d.chunk.js": "/static/js/3.dad4e24d.chunk.js",
+    "static/js/3.dad4e24d.chunk.js.map": "/static/js/3.dad4e24d.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.7425a665.chunk.css.map": "/static/css/2.7425a665.chunk.css.map",
+    "static/css/main.bb184f77.chunk.css.map": "/static/css/main.bb184f77.chunk.css.map",
+    "static/js/2.9fba63be.chunk.js.LICENSE.txt": "/static/js/2.9fba63be.chunk.js.LICENSE.txt",
+    "static/media/login.css": "/static/media/Valentine-soap3.9e72ae53.svg",
+    "static/media/mdb.css": "/static/media/arrow_right.0897f985.svg",
+    "static/media/all.min.css": "/static/media/fa-solid-900.46fdbd2d.woff",
+    "static/media/Carousal.css": "/static/media/img2.2ec13145.jpg",
+    "static/media/logo.6ce24c58.svg": "/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.54b58057.js",
+    "static/css/2.7425a665.chunk.css",
+    "static/js/2.9fba63be.chunk.js",
+    "static/css/main.bb184f77.chunk.css",
+    "static/js/main.b0c64934.chunk.js"
+  ]
+}
